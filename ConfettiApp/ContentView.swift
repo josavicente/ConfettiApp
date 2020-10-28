@@ -7,10 +7,48 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    @State var showAnimation : Bool = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack{
+            
+            if self.showAnimation {
+                ConfettiBoom(showAnimation: self.$showAnimation)
+            }
+            VStack{
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        self.showAnimation.toggle()
+                    }
+                }, label: {
+                    HStack{
+                        Spacer()
+                        Text("Boom 🥳")
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(.bold)
+                        Spacer()
+                    }
+                })
+                Spacer()
+            }
+        }
+    }
+}
+
+struct ConfettiBoom: View {
+    
+    @Binding var showAnimation : Bool
+    
+    var body: some View {
+        if self.showAnimation{
+            Confetti().onTapGesture{
+                self.showAnimation.toggle()
+            }
+        }
     }
 }
 
