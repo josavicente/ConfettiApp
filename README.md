@@ -1,4 +1,4 @@
-# ConfettiSwifUI
+# ConfettiApp
 
 SwiftUI Exambple of Confetti Effect from iMessage.
 Using a UIViewRepresentable.
